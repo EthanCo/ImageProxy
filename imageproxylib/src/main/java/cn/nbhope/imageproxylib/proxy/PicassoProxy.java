@@ -9,7 +9,6 @@ import android.support.annotation.IntegerRes;
 import android.support.v4.app.Fragment;
 import android.widget.ImageView;
 
-import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
@@ -96,7 +95,7 @@ class PicassoProxy extends ImageProxy {
 
         @Override
         public <V> ICreator load(V model) {
-            throw new IllegalArgumentException("Picasso 不支持 子定义类型");
+            throw new IllegalArgumentException("Picasso 不支持 自定义类型");
         }
     }
 
@@ -157,11 +156,11 @@ class PicassoProxy extends ImageProxy {
             return this;
         }
 
-        @Override
+       /* @Override
         public ICreator transform(BitmapTransformation... transformations) {
             //picasso can not
             return this;
-        }
+        }*/
 
         @Override
         public void into(ImageView view) {
