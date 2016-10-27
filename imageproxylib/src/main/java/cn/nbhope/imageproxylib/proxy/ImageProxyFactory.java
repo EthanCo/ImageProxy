@@ -8,12 +8,13 @@ import cn.nbhope.imageproxylib.abs.ImageProxy;
  */
 public class ImageProxyFactory {
     public static ImageProxy create(Type type) {
-//        if (type == Type.GLIDE) {
-//            return GlideProxy.getInstace();
-//        } else
-        if (type == Type.PICASSO) {
-            return PicassoProxy.getInstace();
+        if (type == Type.GLIDE) {
+            return GlideProxy.getInstace();
         }
+// else
+//        if (type == Type.PICASSO) {
+//            return PicassoProxy.getInstace();
+//        }
         throw new IllegalArgumentException("not found type:" + type);
     }
 }
