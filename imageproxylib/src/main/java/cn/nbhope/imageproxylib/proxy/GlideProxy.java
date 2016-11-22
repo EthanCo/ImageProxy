@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.IntegerRes;
 import android.support.v4.app.Fragment;
 import android.widget.ImageView;
 
@@ -80,7 +79,7 @@ class GlideProxy extends ImageProxy {
         }
 
         @Override
-        public ICreator load(@IntegerRes Integer resourceId) {
+        public ICreator load(Integer resourceId) {
             DrawableTypeRequest<Integer> creator = proxy.load(resourceId);
             return new Creator(creator);
         }

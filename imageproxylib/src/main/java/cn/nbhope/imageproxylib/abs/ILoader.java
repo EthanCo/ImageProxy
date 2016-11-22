@@ -1,7 +1,6 @@
 package cn.nbhope.imageproxylib.abs;
 
 import android.net.Uri;
-import android.support.annotation.IntegerRes;
 
 import java.io.File;
 
@@ -22,7 +21,7 @@ public interface ILoader {
 
     public abstract ICreator load(File file);
 
-    public abstract ICreator load(@IntegerRes Integer resourceId);
+    public abstract ICreator load(Integer resourceId);
 
     public abstract ICreator load(byte[] model);
 

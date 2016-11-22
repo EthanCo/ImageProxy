@@ -83,7 +83,7 @@
 //        }
 //
 //        @Override
-//        public ICreator load(@IntegerRes Integer resourceId) {
+//        public ICreator load(Integer resourceId) {
 //            RequestCreator creator = proxy.load(resourceId);
 //            return new Creator(creator);
 //        }
