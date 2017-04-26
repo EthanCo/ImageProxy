@@ -17,9 +17,9 @@ Add it in your root build.gradle at the end of repositories:
 
 	dependencies {
 		//Glide专版
-        compile 'com.github.EthanCo:ImageProxy:1.0.2-Glide-sol'
+		compile 'com.github.EthanCo:ImageProxy:1.0.2-Glide-sol'
 		//Picasso专版
-		//compile 'com.github.EthanCo:ImageProxy:1.0.0-Picasso-sol'
+		/compile 'com.github.EthanCo:ImageProxy:1.0.0-Picasso-sol'
 		//集成了Glide和Picasso
 		//compile 'com.github.EthanCo:ImageProxy:1.0.0'
 	}
