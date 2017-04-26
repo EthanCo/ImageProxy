@@ -1,9 +1,12 @@
 package cn.nbhope.imageproxylib.abs;
 
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.FloatRange;
 import android.widget.ImageView;
 
+import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 
 /**
@@ -35,12 +38,12 @@ public interface ICreator {
     ICreator override(int width, int height);
 
     /**
-     * 先加载缩略图，再加载完整的图片
+     * 加载缩略图(预览图)
      *
      * @param sizeMultiplier 缩略图比例 0-1
      * @return
      */
-    ICreator thumbnail(float sizeMultiplier);
+    ICreator thumbnail(@FloatRange(from = 0, to = 1) float sizeMultiplier);
 
     /**
      * 设置占位图
@@ -75,7 +78,21 @@ public interface ICreator {
     ICreator error(Drawable drawable);
 
 
+    /**
+     * 变换
+     *
+     * @param transformations
+     * @return
+     */
     ICreator transform(BitmapTransformation... transformations);
+
+    /**
+     * Bitmap 变换
+     *
+     * @param bitmapTransformations
+     * @return
+     */
+    ICreator bitmapTransform(Transformation<Bitmap>... bitmapTransformations);
 
     /**
      * 将图片加载到ImageView

@@ -2,6 +2,7 @@ package cn.nbhope.imageproxylib.proxy;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 
 import java.io.File;
@@ -155,6 +157,12 @@ class GlideProxy extends ImageProxy {
         @Override
         public ICreator transform(BitmapTransformation... transformations) {
             creator.transform(transformations);
+            return this;
+        }
+
+        @Override
+        public ICreator bitmapTransform(Transformation<Bitmap>... bitmapTransformations) {
+            creator.bitmapTransform(bitmapTransformations);
             return this;
         }
 

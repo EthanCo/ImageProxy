@@ -11,10 +11,10 @@ public class ImageProxyFactory {
         if (type == Type.GLIDE) {
             return GlideProxy.getInstace();
         }
-// else
-//        if (type == Type.PICASSO) {
-//            return PicassoProxy.getInstace();
-//        }
+//      else
+//      if (type == Type.PICASSO) {
+//          return PicassoProxy.getInstace();
+//      }
         throw new IllegalArgumentException("not found type:" + type);
     }
 }
