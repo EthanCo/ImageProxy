@@ -15,21 +15,20 @@ Add it in your root build.gradle at the end of repositories:
 
 ### Step 2. Add the dependency ###
 
-		dependencies {
-			//Glide专版
-	        compile 'com.github.EthanCo:ImageProxy:1.0.1-Glide-sol'
-			//Picasso专版
-			//compile 'com.github.EthanCo:ImageProxy:1.0.0-Picasso-sol'
-			//集成了Glide和Picasso
-			//compile 'com.github.EthanCo:ImageProxy:1.0.0'
+	dependencies {
+		//Glide专版
+        compile 'com.github.EthanCo:ImageProxy:1.0.2-Glide-sol'
+		//Picasso专版
+		//compile 'com.github.EthanCo:ImageProxy:1.0.0-Picasso-sol'
+		//集成了Glide和Picasso
+		//compile 'com.github.EthanCo:ImageProxy:1.0.0'
 	}
 
 ## 使用 ##
 
-	    //ImageProxy imageProxy = ImageProxyFactory.create(Type.PICASSO);
-        ImageProxy imageProxy = ImageProxyFactory.create(Type.GLIDE);
-
-		imageProxy.with(this).load(url1).into(img1);  
+	//ImageProxy imageProxy = ImageProxyFactory.create(Type.PICASSO);
+	ImageProxy imageProxy = ImageProxyFactory.create(Type.GLIDE);
+	imageProxy.with(this).load(url1).into(img1);  
 		
 ### 其他操作 ###
 
