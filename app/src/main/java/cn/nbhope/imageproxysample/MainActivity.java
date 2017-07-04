@@ -1,5 +1,6 @@
 package cn.nbhope.imageproxysample;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,8 @@ import cn.nbhope.imageproxylib.abs.ImageProxy;
 import cn.nbhope.imageproxylib.proxy.ImageProxyFactory;
 import cn.nbhope.imageproxylib.proxy.Type;
 import cn.nbhope.imageproxylib.transform.CircleTransform;
+import jp.wasabeef.glide.transformations.BlurTransformation;
+import jp.wasabeef.glide.transformations.CropTransformation;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         img2 = (ImageView) findViewById(R.id.img2);
         img3 = (ImageView) findViewById(R.id.img3);
 
-        String url1 = "http://www.bz55.com/uploads1/allimg/120312/1_120312100435_8.jpg";
+        String url1 = "http://imgsrc.baidu.com/image/c0%3Dshijue%2C0%2C0%2C245%2C40/sign=626e96b8c711728b24208461a095a9bb/0eb30f2442a7d9337bfbfd5aa74bd11373f00143.jpg";
         Object url2 = Uri.parse("http://img1.3lian.com/2015/w2/10/d/64.jpg");
 
         //Glide.with(this).load("").into(img1);
@@ -36,7 +39,18 @@ public class MainActivity extends AppCompatActivity {
 
         imageProxy.with(this).load(url1).into(img1);
         imageProxy.with(this).load(url2).into(img2);
+        //loadBlur(imageProxy, img1, this, R.drawable.test5);
 
         imageProxy.with(this).load(url1).transform(new CircleTransform(this)).into(img3);
+    }
+
+    private void loadBlur(ImageProxy imageProxy, ImageView imageView, Context context, Object url) {
+        imageProxy.with(context)
+                .load(url)
+                //.placeholder(imageView.getDrawable())
+                .bitmapTransform(
+                        new BlurTransformation(context, 23, 1),
+                        new CropTransformation(context, imageView.getWidth(), imageView.getHeight()))
+                .into(imageView);
     }
 }
