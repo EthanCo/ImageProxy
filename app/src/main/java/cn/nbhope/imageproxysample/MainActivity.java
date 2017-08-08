@@ -1,9 +1,12 @@
 package cn.nbhope.imageproxysample;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.TintContextWrapper;
+import android.util.Log;
 import android.widget.ImageView;
 
 import cn.nbhope.imageproxylib.abs.ImageProxy;
@@ -27,6 +30,14 @@ public class MainActivity extends AppCompatActivity {
         img1 = (ImageView) findViewById(R.id.img1);
         img2 = (ImageView) findViewById(R.id.img2);
         img3 = (ImageView) findViewById(R.id.img3);
+
+        Context context = img1.getContext();
+        Log.i("Z-Context", "context:" + context.toString() + " isActivity" + (context instanceof Activity));
+        if (context instanceof TintContextWrapper) {
+            Context baseContext = ((TintContextWrapper) context).getBaseContext(); //获取Activity
+            Log.i("Z-Context", "baseContext:" + context.toString() + " isActivity" + (baseContext instanceof Activity));
+        }
+
 
         String url1 = "http://imgsrc.baidu.com/image/c0%3Dshijue%2C0%2C0%2C245%2C40/sign=626e96b8c711728b24208461a095a9bb/0eb30f2442a7d9337bfbfd5aa74bd11373f00143.jpg";
         Object url2 = Uri.parse("http://img1.3lian.com/2015/w2/10/d/64.jpg");
