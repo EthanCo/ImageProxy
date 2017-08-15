@@ -15,15 +15,17 @@ public interface ILoader {
      * @param url 图片URL
      * @return
      */
-    public abstract ICreator load(String url);
+    ICreator load(String url);
 
-    public abstract ICreator load(Uri uri);
+    ICreator load(Uri uri);
 
-    public abstract ICreator load(File file);
+    ICreator load(File file);
 
-    public abstract ICreator load(Integer resourceId);
+    ICreator load(Integer resourceId);
 
-    public abstract ICreator load(byte[] model);
+    ICreator load(byte[] model);
 
-    public abstract <V> ICreator load(V model);
+    <V> ICreator load(V model);
+
+    void pauseRequests();
 }

@@ -32,9 +32,10 @@ public class MainActivity extends AppCompatActivity {
         img3 = (ImageView) findViewById(R.id.img3);
 
         Context context = img1.getContext();
+        Context baseContext = null;
         Log.i("Z-Context", "context:" + context.toString() + " isActivity" + (context instanceof Activity));
         if (context instanceof TintContextWrapper) {
-            Context baseContext = ((TintContextWrapper) context).getBaseContext(); //获取Activity
+            baseContext= ((TintContextWrapper) context).getBaseContext(); //获取Activity
             Log.i("Z-Context", "baseContext:" + context.toString() + " isActivity" + (baseContext instanceof Activity));
         }
 

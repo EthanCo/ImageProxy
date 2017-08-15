@@ -97,6 +97,11 @@ class GlideProxy extends ImageProxy {
             DrawableTypeRequest<V> creator = proxy.load(model);
             return new Creator(creator);
         }
+
+        @Override
+        public void pauseRequests() {
+            proxy.pauseRequests();
+        }
     }
 
     private static class Creator implements ICreator {
