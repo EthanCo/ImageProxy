@@ -9,7 +9,7 @@ import cn.nbhope.imageproxylib.abs.ImageProxy;
 public class ImageProxyFactory {
     public static ImageProxy create(Type type) {
         if (type == Type.GLIDE) {
-            return GlideProxy.getInstace();
+            return GlideProxy.getInstance();
         }
 //      else
 //      if (type == Type.PICASSO) {

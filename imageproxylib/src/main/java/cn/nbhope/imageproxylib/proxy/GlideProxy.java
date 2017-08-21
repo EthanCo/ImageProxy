@@ -34,7 +34,7 @@ class GlideProxy extends ImageProxy {
         private static GlideProxy sInstance = new GlideProxy();
     }
 
-    public static GlideProxy getInstace() {
+    public static GlideProxy getInstance() {
         return SingleTonHolder.sInstance;
     }
 
