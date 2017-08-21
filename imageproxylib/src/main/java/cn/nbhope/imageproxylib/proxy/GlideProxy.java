@@ -99,8 +99,33 @@ class GlideProxy extends ImageProxy {
         }
 
         @Override
+        public void resumeRequests() {
+            proxy.resumeRequests();
+        }
+
+        @Override
         public void pauseRequests() {
             proxy.pauseRequests();
+        }
+
+        @Override
+        public void onStart() {
+            proxy.onStart();
+        }
+
+        @Override
+        public void onStop() {
+            proxy.onStop();
+        }
+
+        @Override
+        public void onDestroy() {
+            proxy.onDestroy();
+        }
+
+        @Override
+        public void onLowMemory() {
+            proxy.onLowMemory();
         }
     }
 

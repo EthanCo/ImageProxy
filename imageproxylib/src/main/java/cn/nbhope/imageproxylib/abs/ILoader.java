@@ -27,5 +27,15 @@ public interface ILoader {
 
     <V> ICreator load(V model);
 
+    void resumeRequests();
+
     void pauseRequests();
+
+    void onStart();
+
+    void onStop();
+
+    void onDestroy();
+
+    void onLowMemory();
 }

@@ -35,10 +35,9 @@ public class MainActivity extends AppCompatActivity {
         Context baseContext = null;
         Log.i("Z-Context", "context:" + context.toString() + " isActivity" + (context instanceof Activity));
         if (context instanceof TintContextWrapper) {
-            baseContext= ((TintContextWrapper) context).getBaseContext(); //获取Activity
+            baseContext = ((TintContextWrapper) context).getBaseContext(); //获取Activity
             Log.i("Z-Context", "baseContext:" + context.toString() + " isActivity" + (baseContext instanceof Activity));
         }
-
 
         String url1 = "http://imgsrc.baidu.com/image/c0%3Dshijue%2C0%2C0%2C245%2C40/sign=626e96b8c711728b24208461a095a9bb/0eb30f2442a7d9337bfbfd5aa74bd11373f00143.jpg";
         Object url2 = Uri.parse("http://img1.3lian.com/2015/w2/10/d/64.jpg");
@@ -54,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
         //loadBlur(imageProxy, img1, this, R.drawable.test5);
 
         imageProxy.with(this).load(url1).transform(new CircleTransform(this)).into(img3);
+
+        /*Glide.with(this).resumeRequests();
+        Glide.with(this).pauseRequests();
+        Glide.with(this).onTrimMemory(1);
+        Glide.with(this).onLowMemory();
+        Glide.with(this).onStart();
+        Glide.with(this).onStop();
+        Glide.with(this).onDestroy();*/
     }
 
     private void loadBlur(ImageProxy imageProxy, ImageView imageView, Context context, Object url) {
