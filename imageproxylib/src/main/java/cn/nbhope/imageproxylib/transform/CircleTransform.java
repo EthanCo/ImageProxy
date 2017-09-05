@@ -1,6 +1,5 @@
 package cn.nbhope.imageproxylib.transform;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
@@ -9,14 +8,16 @@ import android.graphics.Paint;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 
+import java.security.MessageDigest;
+
 /**
  * @Description 将图片转换成圆形
  * Created by EthanCo on 2016/8/30.
  */
 public class CircleTransform extends BitmapTransformation {
 
-    public CircleTransform(Context context) {
-        super(context);
+    public CircleTransform() {
+        super();
     }
 
     private static Bitmap circleCrop(BitmapPool pool, Bitmap source) {
@@ -50,7 +51,7 @@ public class CircleTransform extends BitmapTransformation {
     }
 
     @Override
-    public String getId() {
-        return getClass().getName();
+    public void updateDiskCacheKey(MessageDigest messageDigest) {
+
     }
 }

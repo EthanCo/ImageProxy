@@ -9,7 +9,7 @@ import android.support.v7.widget.TintContextWrapper;
 import android.util.Log;
 import android.widget.ImageView;
 
-import cn.nbhope.imageproxylib.abs.ImageProxy;
+import cn.nbhope.imageproxylib.abs.IImageProxy;
 import cn.nbhope.imageproxylib.proxy.ImageProxyFactory;
 import cn.nbhope.imageproxylib.proxy.Type;
 import cn.nbhope.imageproxylib.transform.CircleTransform;
@@ -46,13 +46,13 @@ public class MainActivity extends AppCompatActivity {
         //Picasso.with(this).load("").into(img2);
 
         //ImageProxy imageProxy = ImageProxyFactory.create(Type.PICASSO);
-        ImageProxy imageProxy = ImageProxyFactory.create(Type.GLIDE);
+        IImageProxy imageProxy = ImageProxyFactory.create(Type.GLIDE);
 
         imageProxy.with(this).load(url1).into(img1);
         imageProxy.with(this).load(url2).into(img2);
         //loadBlur(imageProxy, img1, this, R.drawable.test5);
 
-        imageProxy.with(this).load(url1).transform(new CircleTransform(this)).into(img3);
+        imageProxy.with(this).load(url1).transform(new CircleTransform()).into(img3);
 
         /*Glide.with(this).resumeRequests();
         Glide.with(this).pauseRequests();
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         Glide.with(this).onDestroy();*/
     }
 
-    private void loadBlur(ImageProxy imageProxy, ImageView imageView, Context context, Object url) {
+    private void loadBlur(IImageProxy imageProxy, ImageView imageView, Context context, Object url) {
         imageProxy.with(context)
                 .load(url)
                 //.placeholder(imageView.getDrawable())

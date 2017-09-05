@@ -7,25 +7,28 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.support.v4.app.Fragment;
+import android.view.View;
 import android.widget.ImageView;
 
-import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.io.File;
 
 import cn.nbhope.imageproxylib.abs.ICreator;
+import cn.nbhope.imageproxylib.abs.IImageProxy;
 import cn.nbhope.imageproxylib.abs.ILoader;
-import cn.nbhope.imageproxylib.abs.ImageProxy;
 
 /**
  * @Description Glide代理
  * Created by EthanCo on 2016/6/23.
  */
-class GlideProxy extends ImageProxy {
+public class GlideProxy extends IImageProxy {
 
     private GlideProxy() {
     }
@@ -40,6 +43,11 @@ class GlideProxy extends ImageProxy {
 
     public ILoader with(Context context) {
         return new Loader(Glide.with(context));
+    }
+
+    @Override
+    public ILoader with(View view) {
+        return new Loader(Glide.with(view));
     }
 
     public ILoader with(Activity activity) {
@@ -64,37 +72,37 @@ class GlideProxy extends ImageProxy {
 
         @Override
         public ICreator load(String url) {
-            DrawableTypeRequest<String> creator = proxy.load(url);
+            RequestBuilder<Drawable> creator = proxy.load(url);
             return new Creator(creator);
         }
 
         @Override
         public ICreator load(Uri uri) {
-            DrawableTypeRequest<Uri> creator = proxy.load(uri);
+            RequestBuilder<Drawable> creator = proxy.load(uri);
             return new Creator(creator);
         }
 
         @Override
         public ICreator load(File file) {
-            DrawableTypeRequest<File> creator = proxy.load(file);
+            RequestBuilder<Drawable> creator = proxy.load(file);
             return new Creator(creator);
         }
 
         @Override
         public ICreator load(Integer resourceId) {
-            DrawableTypeRequest<Integer> creator = proxy.load(resourceId);
+            RequestBuilder<Drawable> creator = proxy.load(resourceId);
             return new Creator(creator);
         }
 
         @Override
         public ICreator load(byte[] model) {
-            DrawableTypeRequest<byte[]> creator = proxy.load(model);
+            RequestBuilder<Drawable> creator = proxy.load(model);
             return new Creator(creator);
         }
 
         @Override
         public <V> ICreator load(V model) {
-            DrawableTypeRequest<V> creator = proxy.load(model);
+            RequestBuilder<Drawable> creator = proxy.load(model);
             return new Creator(creator);
         }
 
@@ -130,27 +138,30 @@ class GlideProxy extends ImageProxy {
     }
 
     private static class Creator implements ICreator {
-        private final DrawableTypeRequest creator;
+        private final RequestBuilder creator;
 
-        public Creator(DrawableTypeRequest creator) {
+        public Creator(RequestBuilder creator) {
             this.creator = creator;
         }
 
         @Override
         public Creator crossFade() {
-            creator.crossFade();
+            creator.transition(DrawableTransitionOptions.withCrossFade());
+            //.transition(new DrawableTransitionOptions().crossFade(2000));
             return this;
         }
 
         @Override
         public Creator centerCrop() {
-            creator.centerCrop();
+            RequestOptions options = new RequestOptions().centerCrop();
+            creator.apply(options);
             return this;
         }
 
         @Override
         public Creator override(int width, int height) {
-            creator.override(width, height);
+            RequestOptions options = new RequestOptions().override(width, height);
+            creator.apply(options);
             return this;
         }
 
@@ -162,37 +173,49 @@ class GlideProxy extends ImageProxy {
 
         @Override
         public ICreator placeholder(@DrawableRes int resourceId) {
-            creator.placeholder(resourceId);
+            RequestOptions options = new RequestOptions().placeholder(resourceId);
+            creator.apply(options);
             return this;
         }
 
         @Override
         public ICreator placeholder(Drawable drawable) {
-            creator.placeholder(drawable);
+            RequestOptions options = new RequestOptions().placeholder(drawable);
+            creator.apply(options);
             return this;
         }
 
         @Override
         public ICreator error(@DrawableRes int resourceId) {
-            creator.error(resourceId);
+            RequestOptions options = new RequestOptions().placeholder(resourceId);
+            creator.apply(options);
             return this;
         }
 
         @Override
         public ICreator error(Drawable drawable) {
-            creator.error(drawable);
+            RequestOptions options = new RequestOptions().placeholder(drawable);
+            creator.apply(options);
             return this;
         }
 
         @Override
         public ICreator transform(BitmapTransformation... transformations) {
-            creator.transform(transformations);
+            if (transformations.length > 1) {
+                throw new IllegalArgumentException("Glide4.X 只支持一个参数");
+            }
+            RequestOptions options = new RequestOptions().transform(transformations[0]);
+            creator.apply(options);
             return this;
         }
 
         @Override
         public ICreator bitmapTransform(Transformation<Bitmap>... bitmapTransformations) {
-            creator.bitmapTransform(bitmapTransformations);
+            if (bitmapTransformations.length > 1) {
+                throw new IllegalArgumentException("Glide4.X 只支持一个参数");
+            }
+            RequestOptions options = new RequestOptions().bitmapTransform(bitmapTransformations[0]);
+            creator.apply(options);
             return this;
         }
 
