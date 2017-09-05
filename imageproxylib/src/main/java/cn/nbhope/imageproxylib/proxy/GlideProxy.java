@@ -220,6 +220,12 @@ public class GlideProxy extends IImageProxy {
         }
 
         @Override
+        public ICreator apply(RequestOptions options) {
+            creator.apply(options);
+            return this;
+        }
+
+        @Override
         public void into(ImageView view) {
             creator.into(view);
         }

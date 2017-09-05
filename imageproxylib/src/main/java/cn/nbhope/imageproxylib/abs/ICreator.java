@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+import com.bumptech.glide.request.RequestOptions;
 
 /**
  * @Description 图片建造者
@@ -93,6 +94,14 @@ public interface ICreator {
      * @return
      */
     ICreator bitmapTransform(Transformation<Bitmap>... bitmapTransformations);
+
+    /**
+     * apply
+     *
+     * @param options
+     * @return
+     */
+    ICreator apply(RequestOptions options);
 
     /**
      * 将图片加载到ImageView
