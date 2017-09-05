@@ -16,31 +16,26 @@ import cn.nbhope.imageproxylib.proxy.GlideProxy;
  * @since 2017/9/5
  */
 
-public class ImageProxy extends IImageProxy {
-    private IImageProxy proxy = GlideProxy.getInstance();
+public class ImageProxy {
+    private static IImageProxy proxy = GlideProxy.getInstance();
 
-    @Override
-    public ILoader with(Fragment fragment) {
+    public static ILoader with(Fragment fragment) {
         return proxy.with(fragment);
     }
 
-    @Override
-    public ILoader with(android.support.v4.app.Fragment fragment) {
+    public static ILoader with(android.support.v4.app.Fragment fragment) {
         return proxy.with(fragment);
     }
 
-    @Override
-    public ILoader with(Activity activity) {
+    public static ILoader with(Activity activity) {
         return proxy.with(activity);
     }
 
-    @Override
-    public ILoader with(Context context) {
+    public static ILoader with(Context context) {
         return proxy.with(context);
     }
 
-    @Override
-    public ILoader with(View view) {
+    public static ILoader with(View view) {
         return proxy.with(view);
     }
 }
