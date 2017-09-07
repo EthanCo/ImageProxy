@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
@@ -201,20 +202,16 @@ public class GlideProxy extends IImageProxy {
 
         @Override
         public ICreator transform(BitmapTransformation... transformations) {
-            if (transformations.length > 1) {
-                throw new IllegalArgumentException("Glide4.X 只支持一个参数");
-            }
-            RequestOptions options = new RequestOptions().transform(transformations[0]);
+            RequestOptions options = com.bumptech.glide.request.RequestOptions.
+                    bitmapTransform(new MultiTransformation<>(transformations));
             creator.apply(options);
             return this;
         }
 
         @Override
         public ICreator bitmapTransform(Transformation<Bitmap>... bitmapTransformations) {
-            if (bitmapTransformations.length > 1) {
-                throw new IllegalArgumentException("Glide4.X 只支持一个参数");
-            }
-            RequestOptions options = new RequestOptions().bitmapTransform(bitmapTransformations[0]);
+            RequestOptions options = com.bumptech.glide.request.RequestOptions.
+                    bitmapTransform(new MultiTransformation<>(bitmapTransformations));
             creator.apply(options);
             return this;
         }

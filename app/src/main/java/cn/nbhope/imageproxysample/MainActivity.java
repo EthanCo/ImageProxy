@@ -46,9 +46,9 @@ public class MainActivity extends AppCompatActivity {
         //ImageProxy imageProxy = ImageProxyFactory.create(Type.PICASSO);
         //IImageProxy imageProxy = ImageProxyFactory.create(Type.GLIDE);
 
-        ImageProxy.with(this).load(url1).into(img1);
+        //ImageProxy.with(this).load(url1).into(img1);
         ImageProxy.with(this).load(url2).into(img2);
-        //loadBlur(imageProxy, img1, this, R.drawable.test5);
+        loadBlur(img1, this, url1);
 
         ImageProxy.with(this).load(url1).transform(new CircleTransform()).into(img3);
 
@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
                 .load(url)
                 //.placeholder(imageView.getDrawable())
                 .bitmapTransform(
-                        new BlurTransformation(context, 23, 1),
-                        new CropTransformation(context, imageView.getWidth(), imageView.getHeight()))
+                        new BlurTransformation(23, 1),
+                        new CropTransformation(imageView.getWidth(), imageView.getHeight()))
                 .into(imageView);
     }
 }
